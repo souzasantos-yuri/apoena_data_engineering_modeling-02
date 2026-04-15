@@ -1,0 +1,1 @@
+select * from "postgres"."oltp"."produtos"

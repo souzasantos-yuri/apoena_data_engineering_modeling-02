@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: raw_clientes
+    description: "Espelho da tabela oltp.clientes — sem transformações"
+
+  - name: raw_produtos
+    description: "Espelho da tabela oltp.produtos — sem transformações"
+
+  - name: raw_pedidos
+    description: "Espelho da tabela oltp.pedidos — sem transformações"
+
+  - name: raw_itens_pedido
+    description: "Espelho da tabela oltp.itens_pedido — sem transformações"
+
+  - name: raw_vendedores
+    description: "Espelho da tabela oltp.vendedores — sem transformações"
+
+  - name: raw_categorias
+    description: "Espelho da tabela oltp.categorias — sem transformações"
