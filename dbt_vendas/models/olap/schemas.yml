@@ -1,0 +1,77 @@
+version: 2
+
+models:
+  - name: dim_clientes
+    description: "Dimensão de clientes ativos — contexto 'quem comprou'"
+    columns:
+      - name: sk_cliente
+        description: "Surrogate key do cliente"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_produtos
+    description: "Dimensão de produtos com categoria desnormalizada — contexto 'o quê foi vendido'"
+    columns:
+      - name: sk_produto
+        description: "Surrogate key do produto"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_vendedor
+    description: "Dimensão de vendedores — contexto 'quem vendeu'"
+    columns:
+      - name: sk_vendedor
+        description: "Surrogate key do vendedor"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_data
+    description: "Dimensão de datas de 2023 a 2025 gerada via generate_series"
+    columns:
+      - name: sk_data
+        description: "Surrogate key da data no formato YYYYMMDD (ex: 20240115)"
+        tests:
+          - unique
+          - not_null
+
+  - name: fato_pedidos
+    description: "Tabela fato com granularidade de item de pedido (1 linha = 1 produto de 1 pedido)"
+    columns:
+      - name: sk_pedido
+        description: "Chave composta: id_pedido + id_item"
+        tests:
+          - unique
+          - not_null
+      - name: sk_cliente
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_clientes')
+              field: sk_cliente
+      - name: sk_produto
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_produtos')
+              field: sk_produto
+      - name: sk_vendedor
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_vendedor')
+              field: sk_vendedor
+      - name: sk_data
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_data')
+              field: sk_data
+      - name: quantidade
+        tests:
+          - not_null
+      - name: valor_total_item
+        tests:
+          - not_null
