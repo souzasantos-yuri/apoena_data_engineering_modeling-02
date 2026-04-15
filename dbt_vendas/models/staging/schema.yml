@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: stg_clientes
+    description: "Clientes com nome padronizado, email em minúsculas, estado em maiúsculas"
+    columns:
+      - name: id_cliente
+        arguments:
+          tests:
+            - unique
+            - not_null
+
+  - name: stg_produtos
+    description: "Produtos com categoria desnormalizada (join com raw_categorias)"
+    columns:
+      - name: id_produto
+        arguments:
+          tests:
+            - unique
+            - not_null
+
+  - name: stg_pedidos
+    description: "Pedidos com data_pedido como date e status em maiúsculas"
+    columns:
+      - name: id_pedido
+        arguments:
+          tests:
+            - unique
+            - not_null
+      - name: status
+        arguments:
+          tests:
+            - accepted_values:
+                values: ['PENDENTE', 'ENVIADO', 'ENTREGUE', 'CANCELADO']
+
+  - name: stg_itens_pedido
+    description: "Itens de pedido com tipos numéricos corrigidos"
+    columns:
+      - name: id_item
+        arguments:
+          tests:
+            - unique
+            - not_null
+
+  - name: stg_vendedores
+    description: "Vendedores com nome e email padronizados"
+    columns:
+      - name: id_vendedor
+        arguments:
+          tests:
+            - unique
+            - not_null

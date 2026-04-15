@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+  - name: oltp
+    schema: oltp
+    description: "Sistema transacional TechShop — fonte de origem dos dados"
+
+    tables:
+      - name: clientes
+        description: "Cadastro de clientes da loja"
+
+      - name: produtos
+        description: "Catálogo de produtos com preço e estoque"
+
+      - name: pedidos
+        description: "Cabeçalho dos pedidos realizados"
+
+      - name: itens_pedido
+        description: "Itens individuais de cada pedido"
+
+      - name: vendedores
+        description: "Equipe de vendas"
+
+      - name: categorias
+        description: "Categorias dos produtos"

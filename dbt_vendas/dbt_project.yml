@@ -1,0 +1,14 @@
+name: 'dbt_vendas'
+profile: 'dbt_vendas'
+
+models:
+  dbt_vendas:
+    raw:
+      +materialized: table
+      +schema: raw
+    staging:
+      +materialized: table
+      +schema: staging
+    olap:
+      +materialized: table
+      +schema: olap
